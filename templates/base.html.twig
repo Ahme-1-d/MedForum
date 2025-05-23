@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}SahaCare{% endblock %}</title>
+        <title>{% block title %}MedForum{% endblock %}</title>
         <link rel="icon" href="{{ asset('images/logo.png') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -122,7 +122,6 @@
                 color: #ccc;
             }
             
-            /* Custom styles for article list */
             .article-list th {
                 text-align: center;
             }
@@ -138,7 +137,6 @@
                 font-size: 0.8rem;
             }
             
-            /* Comment styles */
             .comment-card {
                 margin-bottom: 15px;
                 border-left: 3px solid var(--primary-color);
@@ -156,7 +154,6 @@
                 padding: 15px;
             }
             
-            /* Form styles */
             .form-label {
                 font-weight: 500;
             }
@@ -173,8 +170,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ path('app_home') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="SahaCare Logo">
-                    SahaCare
+                    <img src="{{ asset('images/logo.png') }}" alt="MedForum Logo">
+                    MedForum
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -198,22 +195,12 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link {% if app.request.get('_route') starts with 'app_home' %}active{% endif %}" href="{{ path('app_home') }}">
-                                <i class="fas fa-home"></i> Acceuil
+                                <i class="fas fa-home"></i> Accueil
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if app.request.get('_route') starts with 'app_calendar' %}active{% endif %}" href="#">
                                 <i class="fas fa-calendar"></i> Calendrier
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {% if app.request.get('_route') starts with 'app_registration' %}active{% endif %}" href="#">
-                                <i class="fas fa-clipboard-list"></i> Enregistrements
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {% if app.request.get('_route') starts with 'app_patient' %}active{% endif %}" href="#">
-                                <i class="fas fa-user-injured"></i> Patients
                             </a>
                         </li>
                         <li class="nav-item">
