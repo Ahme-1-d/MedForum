@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SahaCare - Accueil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<div class="content-header">
+    <h1>Bienvenue sur SahaCare</h1>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Plateforme de gestion médicale</h5>
+        <p class="card-text">
+            Bienvenue sur la plateforme SahaCare. Utilisez le menu de gauche pour naviguer entre les différentes fonctionnalités.
+        </p>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <i class="fas fa-newspaper fa-3x mb-3 text-primary"></i>
+                        <h5 class="card-title">Articles</h5>
+                        <p class="card-text">Gérez les articles médicaux et informatifs</p>
+                        <a href="{{ path('app_article_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <i class="fas fa-comment fa-3x mb-3 text-primary"></i>
+                        <h5 class="card-title">Commentaires</h5>
+                        <p class="card-text">Gérez les avis et commentaires</p>
+                        <a href="{{ path('app_comment_index') }}" class="btn btn-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

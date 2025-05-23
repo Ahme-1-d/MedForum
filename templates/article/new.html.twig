@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un Article{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- CKEditor CSS -->
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/4.16.2/standard-all/contents.css">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- CKEditor JS -->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard-all/ckeditor.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.querySelector('#article_content')) {
+                CKEDITOR.replace('article_content', {
+                    toolbar: 'full',
+                    height: 400
+                });
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+<div class="content-header">
+    <h1>Créer un Article</h1>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        {{ form_start(form) }}
+            <div class="mb-3">
+                {{ form_label(form.titre, 'Titre de l\'article', {'label_attr': {'class': 'form-label required'}}) }}
+                {{ form_widget(form.titre) }}
+                {{ form_errors(form.titre) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.categorie, 'Catégorie', {'label_attr': {'class': 'form-label required'}}) }}
+                {{ form_widget(form.categorie) }}
+                {{ form_errors(form.categorie) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.content, 'Contenu', {'label_attr': {'class': 'form-label required'}}) }}
+                {{ form_widget(form.content) }}
+                {{ form_errors(form.content) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.imageFile, 'Image (Resizable)', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.imageFile) }}
+                {{ form_errors(form.imageFile) }}
+            </div>
+            
+            <div class="d-flex justify-content-end gap-2">
+                <a href="{{ path('app_article_index') }}" class="btn btn-danger">
+                    <i class="fas fa-times"></i> Annuler
+                </a>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save"></i> Enregistrer
+                </button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Commentaire{% endblock %}
+
+{% block body %}
+<div class="content-header d-flex justify-content-between align-items-center">
+    <h1>Détails du Commentaire</h1>
+    <div>
+        <a href="{{ path('app_comment_index') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Retour à la liste
+        </a>
+        <a href="{{ path('app_comment_edit', {'id': comment.id}) }}" class="btn btn-primary">
+            <i class="fas fa-edit"></i> Modifier
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Informations du commentaire</h5>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong>Médecin:</strong> {{ comment.nomMedecin }}
+            </div>
+            <div class="col-md-6">
+                <strong>Patient:</strong> {{ comment.nomPatient }}
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong>Date:</strong> {{ comment.dateCreation|date('d/m/Y H:i') }}
+            </div>
+            <div class="col-md-6">
+                <strong>Note:</strong>
+                <div class="star-rating">
+                    {% for i in 1..5 %}
+                        {% if i <= comment.rating %}
+                            <i class="fas fa-star"></i>
+                        {% else %}
+                            <i class="far fa-star"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <strong>Article:</strong> 
+                <a href="{{ path('app_article_show', {'id': comment.article.id}) }}">{{ comment.article.titre }}</a>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <strong>Contenu:</strong>
+                <div class="p-3 bg-light rounded mt-2">
+                    {{ comment.contenu }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+fos_ck_editor:
+    configs:
+        main_config:
+            toolbar: 'full'
+            height: 400
+            filebrowserUploadMethod: 'form'
+    
+    # Default configuration for all CKEditor fields
+    default_config: main_config
+    
+    # Include jQuery
+    jquery: true
+    
+    # Base path
+    base_path: "build/ckeditor"
+    
+    # JS path
+    js_path: "build/ckeditor/ckeditor.js"

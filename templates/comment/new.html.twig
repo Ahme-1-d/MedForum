@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Commentaire{% endblock %}
+
+{% block body %}
+<div class="content-header">
+    <h1>Ajouter un Commentaire</h1>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        {{ form_start(form) }}
+            <div class="mb-3">
+                {{ form_label(form.nom_medecin, 'Nom du médecin', {'label_attr': {'class': 'form-label required'}}) }}
+                {{ form_widget(form.nom_medecin) }}
+                {{ form_errors(form.nom_medecin) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.nom_patient, 'Nom du patient', {'label_attr': {'class': 'form-label required'}}) }}
+                {{ form_widget(form.nom_patient) }}
+                {{ form_errors(form.nom_patient) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.contenu, 'Commentaire', {'label_attr': {'class': 'form-label required'}}) }}
+                {{ form_widget(form.contenu) }}
+                {{ form_errors(form.contenu) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.rating, 'Note', {'label_attr': {'class': 'form-label required'}}) }}
+                {{ form_widget(form.rating) }}
+                {{ form_errors(form.rating) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.article, 'Article', {'label_attr': {'class': 'form-label required'}}) }}
+                {{ form_widget(form.article) }}
+                {{ form_errors(form.article) }}
+            </div>
+            
+            <div class="d-flex justify-content-end gap-2">
+                <a href="{{ path('app_comment_index') }}" class="btn btn-danger">
+                    <i class="fas fa-times"></i> Annuler
+                </a>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save"></i> Enregistrer
+                </button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
