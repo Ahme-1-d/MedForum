@@ -21,7 +21,7 @@ final class HomeController extends AbstractController
                 return $this->redirectToRoute('app_home_patient');
             }
             if ($user->getRole() === 'ROLE_ADMIN') {
-                return $this->redirectToRoute('app_home_admin');
+                return $this->redirectToRoute('app_admin');
             }
         }
         return $this->redirectToRoute('app_login');
