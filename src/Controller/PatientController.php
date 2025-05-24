@@ -31,30 +31,7 @@ final class PatientController extends AbstractController
         return $this->render('patient/profile.html.twig', [
         ]);
     }
-    #[Route('/patient/post/new', name: 'app_post_patient')]
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $post = new Post();
-        $form = $this->createForm(PostTypeForm::class, $post);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Définir l'auteur comme l'utilisateur connecté
-            $post->setAuthor($this->getUser());
-
-            $entityManager->persist($post);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Votre post a été créé avec succès!');
-
-            return $this->redirectToRoute('app_home_patient');
-        }
-
-        return $this->render('patient/post.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
+   
     #[Route('patient/post/{id}', name: 'app_post_show')]
     public function show(
         Post $post,
