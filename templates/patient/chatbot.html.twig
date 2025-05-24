@@ -1,13 +1,16 @@
 {% extends 'patient/base.patient.html.twig' %}
 
-{# This is a non-functional comment line #}
+{# Embedded GPT chatbot widget for patient interface #}
 
 {% block content %}
-
-    <iframe
-            width="800" height="600"
-            allow="microphone *"
-            src="https://www.gptbots.ai/widget/eeyrls6zxivez7xre35yxfb/chat.html">
-    </iframe>
-
+    <div style="display: flex; justify-content: center; align-items: center; padding: 2rem;">
+        <iframe
+                src="https://www.gptbots.ai/widget/eeyrls6zxivez7xre35yxfb/chat.html"
+                width="800"
+                height="600"
+                allow="microphone *"
+                style="border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);"
+                title="AI Chat Assistant">
+        </iframe>
+    </div>
 {% endblock %}
