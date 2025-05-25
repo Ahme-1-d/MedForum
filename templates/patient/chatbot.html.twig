@@ -1,8 +1,28 @@
 {% extends 'patient/base.patient.html.twig' %}
 
-{# Embedded GPT chatbot widget for patient interface #}
-
 {% block content %}
+    {# Navigation Links #}
+    <nav style="text-align: center; margin-bottom: 1rem;">
+        <a href="{{ path('app_profile_patient') }}">Mon Profil</a> |
+        <a href="{{ path('app_chatbot_patient') }}">Assistant IA</a>
+    </nav>
+
+    {# Flash Messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}" style="text-align: center; margin: 10px auto; width: 80%;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {# Heading and Instructions #}
+    <h2 style="text-align: center; margin-bottom: 1rem;">Parlez avec notre assistant IA</h2>
+    <p style="text-align: center; margin-bottom: 2rem; color: #555;">
+        Posez vos questions sur vos symptômes, diagnostics possibles ou examens recommandés.
+    </p>
+
+    {# Chatbot iframe #}
     <div style="display: flex; justify-content: center; align-items: center; padding: 2rem;">
         <iframe
                 src="https://www.gptbots.ai/widget/eeyrls6zxivez7xre35yxfb/chat.html"
