@@ -28,7 +28,22 @@
     </div>
 
     <script>
+        // Dynamique : afficher le champ "specialty" si rôle = ROLE_MEDECIN
+        document.addEventListener('DOMContentLoaded', function () {
+            const roleField = document.querySelector('[name$="[role]"]');
+            const specialtyField = document.getElementById('specialty-field');
 
+            function toggleSpecialtyField() {
+                if (roleField.value === 'ROLE_MEDECIN') {
+                    specialtyField.classList.remove('hidden');
+                } else {
+                    specialtyField.classList.add('hidden');
+                }
+            }
+
+            roleField.addEventListener('change', toggleSpecialtyField);
+            toggleSpecialtyField();
+        });
     </script>
 {% endblock %}
 
