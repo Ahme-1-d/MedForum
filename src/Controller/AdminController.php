@@ -115,11 +115,7 @@ final class AdminController extends AbstractController
         return $this->redirectToRoute('app_users_admin');
     }
     #[Route('/admin/users/add', name: 'app_users_add_admin')]
-    public function addUser(
-        Request $request,
-        EntityManagerInterface $entityManager,
-        UserPasswordHasherInterface $passwordHasher
-    ): Response
+
     {
         $user = new User();
         $form = $this->createForm(AddUserForm::class, $user);
@@ -149,5 +145,4 @@ final class AdminController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
 }
