@@ -130,18 +130,12 @@ final class AdminController extends AbstractController
             // Hash le mot de passe
             $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
             $user->setPassword($hashedPassword);
-
-
             $user->setRole('ROLE_MEDECIN');
-
 
             $user->setUpdatedAt(new \DateTimeImmutable());
 
-
             $entityManager->persist($user);
             $entityManager->flush();
-
-
             return $this->redirectToRoute('app_users_admin'); //
         }
 
