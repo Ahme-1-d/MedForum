@@ -29,13 +29,6 @@ final class AdminController extends AbstractController
         return $this->render('admin/index.html.twig',
             []);
     }
-    #[Route('/admin/users', name: 'app_users_admin')]
-    public function users(UserRepository $userRepository): Response
-    {   $patients=$userRepository->findBy(['role'=>'ROLE_PATIENT']);
-        $medecins=$userRepository->findBy(['role'=>'ROLE_MEDECIN']);
-        return $this->render('admin/users.html.twig', ['patients'=>$patients,
-            'medecins'=>$medecins,]);
-    }
     #[Route('/admin/users/edit/{id}', name: 'app_users_edit_admin')]
     public function editUser(
         Request $request,
@@ -142,5 +135,12 @@ final class AdminController extends AbstractController
         return $this->render('admin/add_user.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+    #[Route('/admin/users', name: 'app_users_admin')]
+    public function users(UserRepository $userRepository): Response
+    {   $patients=$userRepository->findBy(['role'=>'ROLE_PATIENT']);
+        $medecins=$userRepository->findBy(['role'=>'ROLE_MEDECIN']);
+        return $this->render('admin/users.html.twig', ['patients'=>$patients,
+            'medecins'=>$medecins,]);
     }
 }
