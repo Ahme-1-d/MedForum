@@ -17,7 +17,12 @@ final class PatientController extends AbstractController
         ]);
     }
     
+}
 
-
-
+#[Route('/patient/profile', name: 'app_profile_patient')]
+public function profil(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+{
+    $user = $this->getUser();
+    $form = $this->createForm(RegistrationFormTypeForm::class, $user);
+    $form->handleRequest($request);
 }
