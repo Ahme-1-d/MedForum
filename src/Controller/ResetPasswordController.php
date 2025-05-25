@@ -34,24 +34,6 @@ class ResetPasswordController extends AbstractController
     /**
      * Display & process form to request a password reset.
      */
-    #[Route('', name: 'app_forgot_password_request')]
-    public function request(Request $request, MailerInterface $mailer, TranslatorInterface $translator): Response
-    {
-        $form = $this->createForm(ResetPasswordRequestForm::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var string $email */
-            $email = $form->get('email')->getData();
-
-            return $this->processSendingPasswordResetEmail($email, $mailer, $translator
-            );
-        }
-
-        return $this->render('reset_password/request.html.twig', [
-            'requestForm' => $form,
-        ]);
-    }
 
     /**
      * Confirmation page after a user has requested a password reset.
@@ -67,6 +49,27 @@ class ResetPasswordController extends AbstractController
 
         return $this->render('reset_password/check_email.html.twig', [
             'resetToken' => $resetToken,
+        ]);
+    }
+    #[Route('', name: 'app_forgot_password_request')]
+    public function request(Request $request, MailerInterface $mailer, TranslatorInterface $translator): Response
+    {
+        $form = $this->createForm(ResetPasswordRequestForm::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var string $email */
+            $email = $form->get('email')->getData();
+
+            return $this->processSendingPasswordResetEmail(
+                $email,
+                $mailer,
+                $translator
+            );
+        }
+
+        return $this->render('reset_password/request.html.twig', [
+            'requestForm' => $form,
         ]);
     }
 
