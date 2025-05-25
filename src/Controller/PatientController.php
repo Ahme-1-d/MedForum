@@ -44,13 +44,14 @@ final class PatientController extends AbstractController
         }
 
         return $this->render('patient/profile.html.twig', [
-            'registrationForm' => $form,
+            'registrationForm' => $form->createView(),
         ]);
     }
 
     #[Route('/patient/chatbot', name: 'app_chatbot_patient')]
     public function chatbot(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('patient/chatbot.html.twig');
     }
 }
