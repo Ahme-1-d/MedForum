@@ -1,4 +1,0 @@
-composer install
-npm install
-npm run build or npm run watch
-php bin/console messenger:consume async -vv
