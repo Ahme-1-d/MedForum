@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\User;
 use App\Form\AddUserForm;
 use App\Form\UpdateUserTypeForm;
+use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -136,6 +138,30 @@ final class AdminController extends AbstractController
 
         $this->addFlash('success', "Mot de passe réinitialisé pour l'utilisateur {$user->getEmail()} et email envoyé.");
         return $this->redirectToRoute('app_users_admin');
+    }
+    #[Route('/admin/pubs', name: 'app_pubs_admin', methods: ['GET'])]
+    public function pubs(PostRepository $postRepository): Response
+    {
+        $posts = $postRepository->findAll();
+
+        return $this->render('admin/pubs.html.twig', [
+            'posts' => $posts,
+        ]);
+    }
+
+    #[Route('/admin/pubs/delete', name: 'app_pubs_delete_admin', methods: ['POST'])]
+    public function deletepubs(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $id = $request->request->get('id');
+        $post = $entityManager->getRepository(Post::class)->find($id);
+
+        if ($post ) {
+            $entityManager->remove($post);
+            $entityManager->flush();
+            $this->addFlash('success', 'Publication supprimée avec succès.');
+        }
+
+        return $this->redirectToRoute('app_pubs_admin');
     }
     #[Route('/admin/users/add', name: 'app_users_add_admin')]
     public function addUser(
