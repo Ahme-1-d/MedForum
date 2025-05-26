@@ -466,6 +466,7 @@ final class PatientController extends AbstractController
             return $this->redirectToRoute('app_contact_patient');
         }
 
+
         return $this->render('patient/ContactUs.html.twig');
     }
 
